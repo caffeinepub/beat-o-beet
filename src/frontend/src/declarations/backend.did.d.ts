@@ -10,24 +10,95 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export interface Inquiry {
-  'id' : bigint,
-  'status' : InquiryStatus,
-  'name' : string,
-  'email' : string,
-  'message' : string,
-  'timestamp' : bigint,
+export interface CartItem {
+  'productId' : string,
+  'addedAt' : bigint,
+  'quantity' : bigint,
 }
-export type InquiryStatus = { 'new' : null } |
-  { 'closed' : null } |
-  { 'inProgress' : null };
-export interface Response { 'message' : string, 'success' : boolean }
+export interface ContactFormResponse {
+  'message' : string,
+  'success' : boolean,
+  'submissionId' : [] | [string],
+}
+export interface ContactSubmission {
+  'id' : string,
+  'customerName' : string,
+  'submittedAt' : bigint,
+  'message' : [] | [string],
+  'address' : string,
+  'customerEmail' : string,
+}
+export interface ContactSubmissionListResponse {
+  'submissions' : Array<ContactSubmission>,
+  'success' : boolean,
+}
+export interface Order {
+  'id' : string,
+  'customerName' : string,
+  'status' : OrderStatus,
+  'createdAt' : bigint,
+  'updatedAt' : bigint,
+  'totalAmount' : bigint,
+  'shippingAddress' : string,
+  'items' : Array<CartItem>,
+  'customerEmail' : string,
+}
+export interface OrderListResponse {
+  'orders' : Array<Order>,
+  'success' : boolean,
+}
+export interface OrderResponse {
+  'orderId' : [] | [string],
+  'message' : string,
+  'success' : boolean,
+}
+export type OrderStatus = { 'shipped' : null } |
+  { 'cancelled' : null } |
+  { 'pending' : null } |
+  { 'delivered' : null } |
+  { 'processing' : null };
+export interface OrderStatusResponse {
+  'order' : [] | [Order],
+  'message' : string,
+  'success' : boolean,
+}
+export interface Product {
+  'id' : string,
+  'inStock' : boolean,
+  'name' : string,
+  'description' : string,
+  'imageUrl' : string,
+  'benefits' : Array<string>,
+  'price' : bigint,
+  'variant' : string,
+}
+export interface ProductListResponse {
+  'success' : boolean,
+  'products' : Array<Product>,
+}
+export interface ProductResponse {
+  'success' : boolean,
+  'product' : [] | [Product],
+}
 export interface _SERVICE {
-  'getAllInquiries' : ActorMethod<[], Array<Inquiry>>,
-  'getInquiriesByStatus' : ActorMethod<[InquiryStatus], Array<Inquiry>>,
-  'getInquiryById' : ActorMethod<[bigint], Inquiry>,
-  'submitInquiry' : ActorMethod<[string, string, string], Response>,
-  'updateInquiryStatus' : ActorMethod<[bigint, InquiryStatus], Response>,
+  'addProduct' : ActorMethod<
+    [string, string, string, bigint, string, Array<string>, string, boolean],
+    ProductResponse
+  >,
+  'getAllContactSubmissions' : ActorMethod<[], ContactSubmissionListResponse>,
+  'getOrderById' : ActorMethod<[string], OrderStatusResponse>,
+  'getOrdersByStatus' : ActorMethod<[OrderStatus], OrderListResponse>,
+  'getProductById' : ActorMethod<[string], ProductResponse>,
+  'getProducts' : ActorMethod<[], ProductListResponse>,
+  'submitContactForm' : ActorMethod<
+    [string, string, string, [] | [string]],
+    ContactFormResponse
+  >,
+  'submitOrder' : ActorMethod<
+    [Array<CartItem>, string, string, string],
+    OrderResponse
+  >,
+  'updateOrderStatus' : ActorMethod<[string, OrderStatus], OrderStatusResponse>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

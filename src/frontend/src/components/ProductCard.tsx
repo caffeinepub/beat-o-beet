@@ -1,12 +1,34 @@
+import { useState } from 'react';
+import { Check } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useCart } from '@/contexts/CartContext';
+
 interface ProductCardProps {
+  id: string;
   image: string;
   name: string;
   variant: string;
   description: string;
   benefits: string[];
+  price: number;
 }
 
-export default function ProductCard({ image, name, variant, description, benefits }: ProductCardProps) {
+export default function ProductCard({ id, image, name, variant, description, benefits, price }: ProductCardProps) {
+  const { addToCart } = useCart();
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart({
+      id,
+      name,
+      variant,
+      price,
+      imageUrl: image,
+    });
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 2000);
+  };
+
   return (
     <div className="group bg-cream rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
       {/* Image Container */}
@@ -43,6 +65,27 @@ export default function ProductCard({ image, name, variant, description, benefit
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Price and Add to Cart */}
+        <div className="pt-4 space-y-3">
+          <div className="text-2xl font-bold text-burgundy">
+            ₹{price}
+          </div>
+          <Button
+            onClick={handleAddToCart}
+            className="w-full bg-burgundy hover:bg-burgundy-dark text-cream font-semibold py-6 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg"
+            disabled={showSuccess}
+          >
+            {showSuccess ? (
+              <span className="flex items-center justify-center gap-2">
+                <Check className="h-5 w-5" />
+                Added to Cart!
+              </span>
+            ) : (
+              'Add to Cart'
+            )}
+          </Button>
         </div>
       </div>
     </div>

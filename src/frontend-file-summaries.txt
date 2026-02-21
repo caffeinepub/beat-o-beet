@@ -1,14 +1,19 @@
 {
-  "frontend/src/App.tsx": "Main application component that renders the complete single-page website with navigation and all sections (hero, products, process, benefits, contact, footer).",
-  "frontend/src/components/Navigation.tsx": "Sticky navigation header with logo, desktop menu, mobile hamburger menu, and smooth scroll functionality to all page sections.",
+  "frontend/src/App.tsx": "Main application component with React Router configuration for home, checkout, order confirmation, and admin dashboard routes, wrapped with CartProvider and QueryClientProvider.",
+  "frontend/src/components/Navigation.tsx": "Sticky navigation header with logo, menu links (Home, Products, About, Benefits, Contact, Admin), shopping cart icon with item count badge, and cart sidebar toggle functionality for both desktop and mobile views.",
   "frontend/src/components/HeroSection.tsx": "Hero section featuring the Beat o Beet logo, tagline, description, and CTA button with background image and decorative wave element.",
-  "frontend/src/components/ProductCard.tsx": "Reusable product card component displaying bottle image, variant name, description, and key benefits with hover effects.",
-  "frontend/src/components/ProductsSection.tsx": "Products showcase section displaying a grid of four beetroot juice variants (Pure, Apple, Ginger, Carrot) with 180ml bottle specifications.",
+  "frontend/src/components/ProductCard.tsx": "Product card component displaying beetroot juice variants with image, details, benefits, price, and Add to Cart button with success feedback.",
+  "frontend/src/components/ProductsSection.tsx": "Products showcase section displaying a grid of four beetroot juice variants with prices and product IDs for cart functionality.",
   "frontend/src/components/ProcessSection.tsx": "Section explaining the three-step cold press process with illustration and detailed benefits of the cold pressing method.",
   "frontend/src/components/HealthBenefitsSection.tsx": "Health benefits section highlighting circulation, energy, and antioxidants with icons, plus detailed nutritional information grid.",
-  "frontend/src/components/ContactSection.tsx": "Contact form section with name, email, and message fields that submits inquiries to the backend with success/error feedback.",
+  "frontend/src/components/ContactSection.tsx": "Contact section component with form that submits customer inquiries (name, email, address, message) to the backend using the useSubmitContactForm mutation hook, displaying success/error feedback.",
   "frontend/src/components/Footer.tsx": "Footer component with brand info, quick links, contact CTA, copyright, and caffeine.ai attribution with UTM tracking.",
-  "frontend/src/hooks/useQueries.ts": "React Query hook for submitting contact form inquiries to the backend with mutation handling and cache invalidation.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including order submission, order fetching, contact form submission, and fetching all contact submissions with proper error handling and cache invalidation.",
   "frontend/src/index.css": "Global styles with custom OKLCH color system for kraft paper aesthetic, burgundy accents, forest green, and Caveat script font for brand typography.",
-  "frontend/tailwind.config.js": "Tailwind configuration extended with custom brand colors (burgundy, kraft, cream, forest), Caveat script font family, and design tokens."
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom brand colors (burgundy, kraft, cream, forest), Caveat script font family, and design tokens.",
+  "frontend/src/contexts/CartContext.tsx": "React Context provider for managing shopping cart state with localStorage persistence, including add, remove, update quantity, and clear cart actions.",
+  "frontend/src/components/CartSidebar.tsx": "Sliding sidebar component displaying cart items with quantity controls, remove buttons, total price, and checkout navigation.",
+  "frontend/src/pages/CheckoutPage.tsx": "Checkout page with customer information form, order summary, and UPI payment section displaying the Mysore Food Labs QR code with payment instructions for customers to scan and pay.",
+  "frontend/src/pages/OrderConfirmationPage.tsx": "Order confirmation page displaying success message, order ID, customer details, order summary, and return to home button.",
+  "frontend/src/pages/AdminDashboardPage.tsx": "Admin dashboard page displaying all contact form submissions in a sortable table with columns for name, email, address, message, and submission date, supporting ascending/descending sort on any column."
 }

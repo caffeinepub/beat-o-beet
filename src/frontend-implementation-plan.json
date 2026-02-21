@@ -1,156 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Beat o Beet Cold Pressed Beetroot Juice Website - Frontend Implementation",
+  "title": "Add navigation link to admin dashboard",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Create hero section with Beat o Beet branding and natural vitality messaging",
+      "id": "REQ-31",
+      "summary": "Add a visible navigation link to access the admin dashboard in the Navigation component",
       "acceptanceCriteria": [
-        "Hero section displays the Beat o Beet logo prominently",
-        "Natural vitality messaging is clearly visible",
-        "Section is visually engaging and sets the brand tone"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/HeroSection.tsx",
-          "operation": "create",
-          "description": "Create hero section component featuring the Beat o Beet logo from frontend/public/assets/generated/beat-o-beet-logo.dim_800x800.png, '100% Natural Vitality' tagline, and compelling headline about cold pressed beetroot juice. Use the background image from frontend/public/assets/generated/hero-beetroot-background.dim_1920x1080.jpg. Design with earthy tones and organic aesthetic matching the kraft paper branding."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Import and render HeroSection component at the top of the main app layout, replacing placeholder content."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Create product showcase section displaying beetroot juice variants in 180ml bottles",
-      "acceptanceCriteria": [
-        "Product grid displays multiple beetroot juice variants",
-        "Each variant shows 180ml bottle size specification",
-        "Product cards are visually consistent and informative"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ProductCard.tsx",
-          "operation": "create",
-          "description": "Create reusable product card component displaying product image, variant name, key features, benefits, and 180ml bottle size specification. Style with natural earthy aesthetic and burgundy accents."
-        },
-        {
-          "path": "frontend/src/components/ProductsSection.tsx",
-          "operation": "create",
-          "description": "Create products section component displaying grid of at least 4 juice variants (Pure Beetroot, Beetroot-Apple, Beetroot-Ginger, Beetroot-Carrot) using ProductCard component. Reference generated product images: frontend/public/assets/generated/beetroot-pure-bottle.dim_400x600.png, frontend/public/assets/generated/beetroot-apple-bottle.dim_400x600.png, frontend/public/assets/generated/beetroot-ginger-bottle.dim_400x600.png, and frontend/public/assets/generated/beetroot-carrot-bottle.dim_400x600.png. Each product must specify 180ml bottle size."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Import and render ProductsSection component below HeroSection in the main app layout."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Create section explaining cold pressing process and natural product positioning",
-      "acceptanceCriteria": [
-        "Section clearly explains cold pressing benefits",
-        "Health benefits of beetroot are highlighted",
-        "Natural and preservative-free messaging is prominent"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ProcessSection.tsx",
-          "operation": "create",
-          "description": "Create 'About Our Process' section explaining cold pressing method, what makes the product 100% natural with no additives or preservatives. Include the cold press process illustration from frontend/public/assets/generated/cold-press-process.dim_600x400.png. Design with organic shapes and natural textures matching the brand aesthetic."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Import and render ProcessSection component below ProductsSection in the main app layout."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Create health benefits section highlighting nutritional advantages",
-      "acceptanceCriteria": [
-        "Key health benefits are clearly listed with icons",
-        "Scientific/nutritional information is presented accessibly",
-        "Section reinforces the health positioning of the product"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/HealthBenefitsSection.tsx",
-          "operation": "create",
-          "description": "Create health benefits section highlighting improved blood circulation, natural energy boost, antioxidants, and vitamin content. Use icon images: frontend/public/assets/generated/health-icon-circulation.dim_200x200.png for circulation, frontend/public/assets/generated/health-icon-energy.dim_200x200.png for energy, and frontend/public/assets/generated/health-icon-antioxidants.dim_200x200.png for antioxidants. Style with forest green accents and clean typography for accessibility."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Import and render HealthBenefitsSection component below ProcessSection in the main app layout."
-        }
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "summary": "Create contact section with inquiry submission form",
-      "acceptanceCriteria": [
-        "Contact form accepts name, email, message fields",
-        "Form provides confirmation feedback on submission"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ContactSection.tsx",
-          "operation": "create",
-          "description": "Create 'Where to Buy' contact section with form for wholesale inquiries, retail locations, or order information. Form includes name, email, and message fields with validation. On submission, call backend submitInquiry method and display success/error feedback. Style form with organic shapes and burgundy call-to-action buttons."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Import and render ContactSection component below HealthBenefitsSection in the main app layout."
-        }
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "summary": "Implement responsive navigation with smooth scrolling to sections",
-      "acceptanceCriteria": [
-        "Navigation is sticky/fixed on scroll",
-        "Mobile responsive menu works on small screens",
-        "All navigation links scroll smoothly to sections"
+        "A link or button labeled 'Admin' or 'Dashboard' is visible in the Navigation component",
+        "Clicking the link navigates to /admin/dashboard route",
+        "The link is accessible from all pages of the website",
+        "The link styling is consistent with other navigation items"
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/Navigation.tsx",
-          "operation": "create",
-          "description": "Create responsive navigation component with Beat o Beet logo and links to Home, Products, Benefits, About, and Contact sections. Implement sticky positioning on scroll and mobile hamburger menu. Configure smooth scrolling to section IDs. Style with kraft paper background and dark brown text matching brand aesthetic."
-        },
-        {
-          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Import and render Navigation component at the very top of the app, above all sections. Add section IDs to each major section component wrapper for smooth scroll targeting."
-        }
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "summary": "Apply natural, earthy, organic visual design theme inspired by kraft paper aesthetic",
-      "acceptanceCriteria": [
-        "Color palette reflects the natural kraft and beetroot branding",
-        "Typography choices reinforce the organic, handcrafted brand identity",
-        "Overall design creates a cohesive, health-focused food brand experience"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Extend Tailwind theme with custom color palette: warm earth tones (beige, tan, cream) for backgrounds, deep burgundy/beetroot red for primary actions and accents, forest green for secondary elements. Add custom font families for handcrafted script/handwritten style for brand name and clean sans-serif for body text."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Import and configure custom fonts (script/handwritten for headings, clean sans-serif for body). Set global styles for organic shapes, natural textures, and wholesome aesthetic. Apply base typography hierarchy and spacing that creates cohesive health-focused food brand experience across all sections."
+          "description": "Add an 'Admin' navigation link that routes to /admin/dashboard. Place it in the desktop navigation menu alongside existing nav items and in the mobile menu. Use consistent styling with other navigation links. Ensure the link uses React Router's Link component for proper routing."
         }
       ]
     }

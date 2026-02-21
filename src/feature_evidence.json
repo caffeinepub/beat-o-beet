@@ -2,106 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-hero-section-featuring-the-beat-o-beet-brand-logo-circular-design-with-beetroot-illustration-100-natural-vitality-text-and-healthy-juice-drink-tagline-as-the-centerpiece-display-the-tagline-100-natural-vitality-prominently-and-include-a-compelling-headline-about-cold-pressed-beetroot-juice",
-      "featureTitle": "Create a hero section featuring the Beat o Beet brand logo (circular design with beetroot illustration, '100% NATURAL VITALITY' text, and 'HEALTHY JUICE DRINK' tagline) as the centerpiece. Display the tagline '100% Natural Vitality' prominently and include a compelling headline about cold pressed beetroot juice.",
+      "featureId": "feature-add-a-visible-navigation-link-or-button-to-access-the-admin-dashboard-at-admin-dashboard-in-the-navigation-component-frontend-src-components-navigation-tsx",
+      "featureTitle": "Add a visible navigation link or button to access the admin dashboard at /admin/dashboard in the Navigation component (frontend/src/components/Navigation.tsx)",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/HeroSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-a-product-showcase-section-displaying-different-beetroot-juice-variants-in-180ml-bottles-each-product-card-should-show-the-bottle-variant-name-key-features-and-benefits-include-at-least-3-4-juice-variants-e-g-pure-beetroot-beetroot-apple-beetroot-ginger-beetroot-carrot",
-      "featureTitle": "Create a product showcase section displaying different beetroot juice variants in 180ml bottles. Each product card should show the bottle, variant name, key features, and benefits. Include at least 3-4 juice variants (e.g., Pure Beetroot, Beetroot-Apple, Beetroot-Ginger, Beetroot-Carrot).",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductsSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-an-about-our-process-section-explaining-the-cold-pressing-method-health-benefits-of-beetroot-juice-and-what-makes-the-product-100-natural-with-no-additives-or-preservatives",
-      "featureTitle": "Create an 'About Our Process' section explaining the cold pressing method, health benefits of beetroot juice, and what makes the product 100% natural with no additives or preservatives.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/ProcessSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-a-health-benefits-section-highlighting-nutritional-advantages-of-beetroot-juice-including-improved-blood-circulation-natural-energy-boost-antioxidants-and-vitamin-content",
-      "featureTitle": "Create a 'Health Benefits' section highlighting nutritional advantages of beetroot juice including improved blood circulation, natural energy boost, antioxidants, and vitamin content.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/HealthBenefitsSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-a-where-to-buy-or-contact-section-with-a-simple-form-for-wholesale-inquiries-retail-locations-or-order-information",
-      "featureTitle": "Create a 'Where to Buy' or contact section with a simple form for wholesale inquiries, retail locations, or order information.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/ContactSection.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-responsive-navigation-menu-with-links-to-home-products-benefits-about-and-contact-sections-include-the-beat-o-beet-logo-in-the-navigation-header",
-      "featureTitle": "Implement a responsive navigation menu with links to Home, Products, Benefits, About, and Contact sections. Include the Beat o Beet logo in the navigation header.",
-      "files": [
-        "frontend/src/App.tsx",
         "frontend/src/components/Navigation.tsx"
       ],
       "components": [
@@ -112,26 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-natural-earthy-and-organic-visual-design-theme-inspired-by-the-beat-o-beet-logo-s-kraft-paper-aesthetic-use-warm-earth-tones-beige-tan-cream-as-backgrounds-deep-burgundy-beetroot-red-for-primary-actions-and-accents-and-forest-green-for-secondary-elements-typography-should-feel-handcrafted-and-approachable-with-a-mix-of-script-handwritten-fonts-for-the-brand-name-and-clean-sans-serif-for-body-text-create-visual-consistency-across-all-sections-with-organic-shapes-natural-textures-and-an-overall-wholesome-healthy-food-brand-feel",
-      "featureTitle": "Apply a natural, earthy, and organic visual design theme inspired by the Beat o Beet logo's kraft paper aesthetic. Use warm earth tones (beige, tan, cream) as backgrounds, deep burgundy/beetroot red for primary actions and accents, and forest green for secondary elements. Typography should feel handcrafted and approachable with a mix of script/handwritten fonts for the brand name and clean sans-serif for body text. Create visual consistency across all sections with organic shapes, natural textures, and an overall wholesome, healthy food brand feel.",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
+        "REQ-31"
       ],
       "confidence": "high"
     }

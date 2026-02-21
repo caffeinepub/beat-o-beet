@@ -8,64 +8,239 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
-export const InquiryStatus = IDL.Variant({
-  'new' : IDL.Null,
-  'closed' : IDL.Null,
-  'inProgress' : IDL.Null,
-});
-export const Inquiry = IDL.Record({
-  'id' : IDL.Nat,
-  'status' : InquiryStatus,
+export const Product = IDL.Record({
+  'id' : IDL.Text,
+  'inStock' : IDL.Bool,
   'name' : IDL.Text,
-  'email' : IDL.Text,
-  'message' : IDL.Text,
-  'timestamp' : IDL.Int,
+  'description' : IDL.Text,
+  'imageUrl' : IDL.Text,
+  'benefits' : IDL.Vec(IDL.Text),
+  'price' : IDL.Nat,
+  'variant' : IDL.Text,
 });
-export const Response = IDL.Record({
+export const ProductResponse = IDL.Record({
+  'success' : IDL.Bool,
+  'product' : IDL.Opt(Product),
+});
+export const ContactSubmission = IDL.Record({
+  'id' : IDL.Text,
+  'customerName' : IDL.Text,
+  'submittedAt' : IDL.Int,
+  'message' : IDL.Opt(IDL.Text),
+  'address' : IDL.Text,
+  'customerEmail' : IDL.Text,
+});
+export const ContactSubmissionListResponse = IDL.Record({
+  'submissions' : IDL.Vec(ContactSubmission),
+  'success' : IDL.Bool,
+});
+export const OrderStatus = IDL.Variant({
+  'shipped' : IDL.Null,
+  'cancelled' : IDL.Null,
+  'pending' : IDL.Null,
+  'delivered' : IDL.Null,
+  'processing' : IDL.Null,
+});
+export const CartItem = IDL.Record({
+  'productId' : IDL.Text,
+  'addedAt' : IDL.Int,
+  'quantity' : IDL.Nat,
+});
+export const Order = IDL.Record({
+  'id' : IDL.Text,
+  'customerName' : IDL.Text,
+  'status' : OrderStatus,
+  'createdAt' : IDL.Int,
+  'updatedAt' : IDL.Int,
+  'totalAmount' : IDL.Nat,
+  'shippingAddress' : IDL.Text,
+  'items' : IDL.Vec(CartItem),
+  'customerEmail' : IDL.Text,
+});
+export const OrderStatusResponse = IDL.Record({
+  'order' : IDL.Opt(Order),
+  'message' : IDL.Text,
+  'success' : IDL.Bool,
+});
+export const OrderListResponse = IDL.Record({
+  'orders' : IDL.Vec(Order),
+  'success' : IDL.Bool,
+});
+export const ProductListResponse = IDL.Record({
+  'success' : IDL.Bool,
+  'products' : IDL.Vec(Product),
+});
+export const ContactFormResponse = IDL.Record({
+  'message' : IDL.Text,
+  'success' : IDL.Bool,
+  'submissionId' : IDL.Opt(IDL.Text),
+});
+export const OrderResponse = IDL.Record({
+  'orderId' : IDL.Opt(IDL.Text),
   'message' : IDL.Text,
   'success' : IDL.Bool,
 });
 
 export const idlService = IDL.Service({
-  'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
-  'getInquiriesByStatus' : IDL.Func(
-      [InquiryStatus],
-      [IDL.Vec(Inquiry)],
+  'addProduct' : IDL.Func(
+      [
+        IDL.Text,
+        IDL.Text,
+        IDL.Text,
+        IDL.Nat,
+        IDL.Text,
+        IDL.Vec(IDL.Text),
+        IDL.Text,
+        IDL.Bool,
+      ],
+      [ProductResponse],
+      [],
+    ),
+  'getAllContactSubmissions' : IDL.Func(
+      [],
+      [ContactSubmissionListResponse],
       ['query'],
     ),
-  'getInquiryById' : IDL.Func([IDL.Nat], [Inquiry], ['query']),
-  'submitInquiry' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Response], []),
-  'updateInquiryStatus' : IDL.Func([IDL.Nat, InquiryStatus], [Response], []),
+  'getOrderById' : IDL.Func([IDL.Text], [OrderStatusResponse], ['query']),
+  'getOrdersByStatus' : IDL.Func([OrderStatus], [OrderListResponse], ['query']),
+  'getProductById' : IDL.Func([IDL.Text], [ProductResponse], ['query']),
+  'getProducts' : IDL.Func([], [ProductListResponse], ['query']),
+  'submitContactForm' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Text, IDL.Opt(IDL.Text)],
+      [ContactFormResponse],
+      [],
+    ),
+  'submitOrder' : IDL.Func(
+      [IDL.Vec(CartItem), IDL.Text, IDL.Text, IDL.Text],
+      [OrderResponse],
+      [],
+    ),
+  'updateOrderStatus' : IDL.Func(
+      [IDL.Text, OrderStatus],
+      [OrderStatusResponse],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
-  const InquiryStatus = IDL.Variant({
-    'new' : IDL.Null,
-    'closed' : IDL.Null,
-    'inProgress' : IDL.Null,
-  });
-  const Inquiry = IDL.Record({
-    'id' : IDL.Nat,
-    'status' : InquiryStatus,
+  const Product = IDL.Record({
+    'id' : IDL.Text,
+    'inStock' : IDL.Bool,
     'name' : IDL.Text,
-    'email' : IDL.Text,
-    'message' : IDL.Text,
-    'timestamp' : IDL.Int,
+    'description' : IDL.Text,
+    'imageUrl' : IDL.Text,
+    'benefits' : IDL.Vec(IDL.Text),
+    'price' : IDL.Nat,
+    'variant' : IDL.Text,
   });
-  const Response = IDL.Record({ 'message' : IDL.Text, 'success' : IDL.Bool });
+  const ProductResponse = IDL.Record({
+    'success' : IDL.Bool,
+    'product' : IDL.Opt(Product),
+  });
+  const ContactSubmission = IDL.Record({
+    'id' : IDL.Text,
+    'customerName' : IDL.Text,
+    'submittedAt' : IDL.Int,
+    'message' : IDL.Opt(IDL.Text),
+    'address' : IDL.Text,
+    'customerEmail' : IDL.Text,
+  });
+  const ContactSubmissionListResponse = IDL.Record({
+    'submissions' : IDL.Vec(ContactSubmission),
+    'success' : IDL.Bool,
+  });
+  const OrderStatus = IDL.Variant({
+    'shipped' : IDL.Null,
+    'cancelled' : IDL.Null,
+    'pending' : IDL.Null,
+    'delivered' : IDL.Null,
+    'processing' : IDL.Null,
+  });
+  const CartItem = IDL.Record({
+    'productId' : IDL.Text,
+    'addedAt' : IDL.Int,
+    'quantity' : IDL.Nat,
+  });
+  const Order = IDL.Record({
+    'id' : IDL.Text,
+    'customerName' : IDL.Text,
+    'status' : OrderStatus,
+    'createdAt' : IDL.Int,
+    'updatedAt' : IDL.Int,
+    'totalAmount' : IDL.Nat,
+    'shippingAddress' : IDL.Text,
+    'items' : IDL.Vec(CartItem),
+    'customerEmail' : IDL.Text,
+  });
+  const OrderStatusResponse = IDL.Record({
+    'order' : IDL.Opt(Order),
+    'message' : IDL.Text,
+    'success' : IDL.Bool,
+  });
+  const OrderListResponse = IDL.Record({
+    'orders' : IDL.Vec(Order),
+    'success' : IDL.Bool,
+  });
+  const ProductListResponse = IDL.Record({
+    'success' : IDL.Bool,
+    'products' : IDL.Vec(Product),
+  });
+  const ContactFormResponse = IDL.Record({
+    'message' : IDL.Text,
+    'success' : IDL.Bool,
+    'submissionId' : IDL.Opt(IDL.Text),
+  });
+  const OrderResponse = IDL.Record({
+    'orderId' : IDL.Opt(IDL.Text),
+    'message' : IDL.Text,
+    'success' : IDL.Bool,
+  });
   
   return IDL.Service({
-    'getAllInquiries' : IDL.Func([], [IDL.Vec(Inquiry)], ['query']),
-    'getInquiriesByStatus' : IDL.Func(
-        [InquiryStatus],
-        [IDL.Vec(Inquiry)],
+    'addProduct' : IDL.Func(
+        [
+          IDL.Text,
+          IDL.Text,
+          IDL.Text,
+          IDL.Nat,
+          IDL.Text,
+          IDL.Vec(IDL.Text),
+          IDL.Text,
+          IDL.Bool,
+        ],
+        [ProductResponse],
+        [],
+      ),
+    'getAllContactSubmissions' : IDL.Func(
+        [],
+        [ContactSubmissionListResponse],
         ['query'],
       ),
-    'getInquiryById' : IDL.Func([IDL.Nat], [Inquiry], ['query']),
-    'submitInquiry' : IDL.Func([IDL.Text, IDL.Text, IDL.Text], [Response], []),
-    'updateInquiryStatus' : IDL.Func([IDL.Nat, InquiryStatus], [Response], []),
+    'getOrderById' : IDL.Func([IDL.Text], [OrderStatusResponse], ['query']),
+    'getOrdersByStatus' : IDL.Func(
+        [OrderStatus],
+        [OrderListResponse],
+        ['query'],
+      ),
+    'getProductById' : IDL.Func([IDL.Text], [ProductResponse], ['query']),
+    'getProducts' : IDL.Func([], [ProductListResponse], ['query']),
+    'submitContactForm' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Text, IDL.Opt(IDL.Text)],
+        [ContactFormResponse],
+        [],
+      ),
+    'submitOrder' : IDL.Func(
+        [IDL.Vec(CartItem), IDL.Text, IDL.Text, IDL.Text],
+        [OrderResponse],
+        [],
+      ),
+    'updateOrderStatus' : IDL.Func(
+        [IDL.Text, OrderStatus],
+        [OrderStatusResponse],
+        [],
+      ),
   });
 };
 

@@ -1,16 +1,21 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
+  "projectStateVersion": 9,
   "summary": "Food and beverage website for cold pressed beetroot juice with different variants, bottled in 180ml bottles",
   "architectural_notes": [
     "Food and beverage industry website",
     "Product: cold pressed beetroot juice with variants",
     "180ml bottle format",
-    "Logo from user-provided image"
+    "Logo from user-provided image",
+    "E-commerce functionality with shopping cart",
+    "UPI payment integration with QR code on checkout",
+    "Business name: Mysore Food Labs",
+    "Admin dashboard for viewing contact submissions"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Beat o Beet brand logo recreation from uploaded image, high resolution circular design with beetroot illustration, '100% NATURAL VITALITY' text, and 'HEALTHY JUICE DRINK' tagline on kraft paper background (beat-o-beet-logo.dim_800x800.png)\n- Pure beetroot juice in 180ml clear glass bottle with Beat o Beet label, professional product photography style on white background (beetroot-pure-bottle.dim_400x600.png)\n- Beetroot-apple juice variant in 180ml bottle with Beat o Beet label and apple accent, product photography on white background (beetroot-apple-bottle.dim_400x600.png)\n- Beetroot-ginger juice variant in 180ml bottle with Beat o Beet label and ginger accent, product photography on white background (beetroot-ginger-bottle.dim_400x600.png)\n- Beetroot-carrot juice variant in 180ml bottle with Beat o Beet label and carrot accent, product photography on white background (beetroot-carrot-bottle.dim_400x600.png)\n- Hero section background image of fresh beetroots with green leaves, earthy natural aesthetic, soft focus (hero-beetroot-background.dim_1920x1080.jpg)\n- Icon illustration of a heart with pulse line representing improved blood circulation benefit (health-icon-circulation.dim_200x200.png)\n- Icon illustration of a lightning bolt representing natural energy boost benefit (health-icon-energy.dim_200x200.png)\n- Icon illustration of antioxidant molecules or shield representing antioxidant content (health-icon-antioxidants.dim_200x200.png)\n- Cold press juice extraction process illustration showing beetroot being pressed, modern minimal style with organic shapes (cold-press-process.dim_600x400.png)",
+  "known_issues": [
+    "Admin dashboard not accessible/visible on deployed website"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-hero-section-featuring-the-beat-o-beet-brand-logo-circular-design-with-beetroot-illustration-100-natural-vitality-text-and-healthy-juice-drink-tagline-as-the-centerpiece-display-the-tagline-100-natural-vitality-prominently-and-include-a-compelling-headline-about-cold-pressed-beetroot-juice",
@@ -67,6 +72,126 @@
         "REQ-7"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-create-a-cartcontext-in-frontend-src-contexts-cartcontext-tsx-that-manages-cart-state-with-actions-to-add-items-remove-items-update-quantities-clear-cart-and-calculate-total-price",
+      "title": "Create a CartContext in frontend/src/contexts/CartContext.tsx that manages cart state with actions to add items, remove items, update quantities, clear cart, and calculate total price",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-productcard-component-to-include-an-add-to-cart-button-that-uses-cartcontext-to-add-the-product-to-the-cart-with-quantity-1-and-show-a-success-indicator-when-item-is-added",
+      "title": "Update ProductCard component to include an 'Add to Cart' button that uses CartContext to add the product to the cart with quantity 1, and show a success indicator when item is added",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-cart-icon-with-item-count-badge-to-the-navigation-component-that-opens-a-cart-sidebar-when-clicked",
+      "title": "Add a cart icon with item count badge to the Navigation component that opens a cart sidebar when clicked",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-cartsidebar-component-in-frontend-src-components-cartsidebar-tsx-that-displays-cart-items-with-product-name-variant-quantity-controls-individual-price-line-total-overall-cart-total-and-buttons-to-proceed-to-checkout-or-close-the-sidebar",
+      "title": "Create a CartSidebar component in frontend/src/components/CartSidebar.tsx that displays cart items with product name, variant, quantity controls, individual price, line total, overall cart total, and buttons to proceed to checkout or close the sidebar",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-checkoutpage-component-in-frontend-src-pages-checkoutpage-tsx-with-a-form-collecting-customer-name-email-and-shipping-address-displaying-order-summary-with-cart-items-and-total-and-a-submit-button-to-place-the-order",
+      "title": "Create a CheckoutPage component in frontend/src/pages/CheckoutPage.tsx with a form collecting customer name, email, and shipping address, displaying order summary with cart items and total, and a submit button to place the order",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-orderconfirmationpage-component-in-frontend-src-pages-orderconfirmationpage-tsx-that-displays-order-id-success-message-order-details-and-a-button-to-return-to-home",
+      "title": "Create an OrderConfirmationPage component in frontend/src/pages/OrderConfirmationPage.tsx that displays order ID, success message, order details, and a button to return to home",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-app-tsx-to-wrap-the-application-with-cartprovider-and-configure-routing-for-checkout-page-checkout-and-order-confirmation-page-order-orderid",
+      "title": "Update App.tsx to wrap the application with CartProvider and configure routing for checkout page (/checkout) and order confirmation page (/order/:orderId)",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-react-query-hooks-in-frontend-src-hooks-usequeries-ts-for-useproducts-fetches-product-list-usesubmitorder-submits-order-and-useorder-fetches-order-by-id",
+      "title": "Create React Query hooks in frontend/src/hooks/useQueries.ts for useProducts (fetches product list), useSubmitOrder (submits order), and useOrder (fetches order by ID)",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-user-provided-upi-qr-code-image-on-the-checkout-page-with-the-business-name-mysore-food-labs-prominently-shown-above-or-near-the-qr-code",
+      "title": "Display the user-provided UPI QR code image on the checkout page with the business name 'Mysore Food Labs' prominently shown above or near the QR code",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-contactsection-component-frontend-src-components-contactsection-tsx-to-submit-form-data-to-the-backend-using-the-submitcontactform-function-instead-of-opening-a-mailto-link-and-show-success-feedback-after-submission",
+      "title": "Update the ContactSection component (frontend/src/components/ContactSection.tsx) to submit form data to the backend using the submitContactForm function instead of opening a mailto link, and show success feedback after submission",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-admindashboardpage-component-in-frontend-src-pages-admindashboardpage-tsx-that-displays-all-contact-form-submissions-in-a-sortable-table-with-columns-for-customer-name-email-address-message-and-submission-date",
+      "title": "Create an AdminDashboardPage component in frontend/src/pages/AdminDashboardPage.tsx that displays all contact form submissions in a sortable table with columns for customer name, email, address, message, and submission date",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-app-tsx-to-add-a-route-for-the-admin-dashboard-page-at-admin-dashboard",
+      "title": "Update App.tsx to add a route for the admin dashboard page at /admin/dashboard",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-react-query-hook-usecontactsubmissions-in-frontend-src-hooks-usequeries-ts-that-fetches-all-contact-form-submissions-using-the-getallcontactsubmissions-backend-function",
+      "title": "Create a React Query hook useContactSubmissions in frontend/src/hooks/useQueries.ts that fetches all contact form submissions using the getAllContactSubmissions backend function",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-react-query-mutation-hook-usesubmitcontactform-in-frontend-src-hooks-usequeries-ts-that-submits-contact-form-data-to-the-backend",
+      "title": "Create a React Query mutation hook useSubmitContactForm in frontend/src/hooks/useQueries.ts that submits contact form data to the backend",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-navigation-link-or-button-to-access-the-admin-dashboard-at-admin-dashboard-in-the-navigation-component-frontend-src-components-navigation-tsx",
+      "title": "Add a visible navigation link or button to access the admin dashboard at /admin/dashboard in the Navigation component (frontend/src/components/Navigation.tsx)",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -74,6 +199,108 @@
       "id": "AR-1",
       "summary": "Create website for cold pressed beetroot juice product",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add shopping cart functionality for direct customer purchases",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create a backend data model for Product with fields: id (Text), name (Text), variant (Text), price (Nat - representing cents), description (Text), benefits (Array of Text), imageUrl (Text), and inStock (Bool)",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create a backend data model for CartItem with fields: productId (Text), quantity (Nat), and addedAt (Int - timestamp)",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create a backend data model for Order with fields: id (Text), items (Array of CartItem), customerName (Text), customerEmail (Text), shippingAddress (Text), totalAmount (Nat - in cents), status (OrderStatus enum: Pending, Processing, Shipped, Delivered, Cancelled), createdAt (Int), and updatedAt (Int)",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement backend function getProducts() that returns an array of all available products with their current stock status",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement backend function submitOrder(items: [CartItem], customerName: Text, customerEmail: Text, shippingAddress: Text) that creates a new order, calculates total amount, assigns a unique order ID, sets status to Pending, stores the order, and returns the order ID",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Implement backend function getOrderById(orderId: Text) that retrieves order details including items, customer information, and current status",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add UPI payment method with QR code on checkout page using provided QR code image, displaying business name 'Mysore Food Labs'",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Create backend data model for ContactSubmission with fields: id (Text), customerName (Text), customerEmail (Text), address (Text), message (Text, optional), submittedAt (Int - timestamp)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend function to store contact form submissions with all customer details",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Create admin dashboard page to view all contact form submissions in a sortable table with columns for name, email, address, submission date",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Create a backend data model ContactSubmission with fields: id (Text), customerName (Text), customerEmail (Text), address (Text), message (Text optional), submittedAt (Int timestamp)",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Implement backend function submitContactForm(customerName: Text, customerEmail: Text, address: Text, message: ?Text) that creates a unique ID, stores the contact submission with timestamp in a stable Map, and returns the submission ID",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Implement backend function getAllContactSubmissions() that returns an array of all stored contact form submissions sorted by submission date (newest first)",
+      "reqIds": [
+        "REQ-25"
+      ],
       "status": "pending"
     }
   ],

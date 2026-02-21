@@ -3,9 +3,11 @@ import ProductCard from './ProductCard';
 export default function ProductsSection() {
   const products = [
     {
+      id: 'pure-beetroot',
       image: '/assets/generated/beetroot-pure-bottle.dim_400x600.png',
       name: 'Pure Beetroot',
       variant: 'Classic',
+      price: 120,
       description:
         'The original. 100% pure cold pressed beetroot juice with nothing added. Experience the full, earthy richness of premium beetroots.',
       benefits: [
@@ -15,9 +17,11 @@ export default function ProductsSection() {
       ]
     },
     {
+      id: 'beetroot-apple',
       image: '/assets/generated/beetroot-apple-bottle.dim_400x600.png',
       name: 'Beetroot Apple',
       variant: 'Sweet & Balanced',
+      price: 130,
       description:
         'A harmonious blend of earthy beetroot and crisp apple sweetness. Perfect for those new to beetroot juice.',
       benefits: [
@@ -27,9 +31,11 @@ export default function ProductsSection() {
       ]
     },
     {
+      id: 'beetroot-ginger',
       image: '/assets/generated/beetroot-ginger-bottle.dim_400x600.png',
       name: 'Beetroot Ginger',
       variant: 'Spicy & Energizing',
+      price: 140,
       description:
         'Bold beetroot meets zesty ginger for an invigorating boost. A powerful combination for active lifestyles.',
       benefits: [
@@ -39,9 +45,11 @@ export default function ProductsSection() {
       ]
     },
     {
+      id: 'beetroot-carrot',
       image: '/assets/generated/beetroot-carrot-bottle.dim_400x600.png',
       name: 'Beetroot Carrot',
       variant: 'Vitamin Rich',
+      price: 135,
       description:
         'A vibrant fusion of beetroot and carrot, packed with beta-carotene and antioxidants for overall wellness.',
       benefits: [
@@ -66,8 +74,8 @@ export default function ProductsSection() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product, index) => (
-            <ProductCard key={index} {...product} />
+          {products.map((product) => (
+            <ProductCard key={product.id} {...product} />
           ))}
         </div>
 
