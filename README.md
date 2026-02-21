@@ -1,2 +1,3 @@
-# beat-o-beet
-Exported from Caffeine project: Beat o Beet
+## Beat o Beet
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

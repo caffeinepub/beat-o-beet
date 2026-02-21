@@ -1,0 +1,14 @@
+{
+  "frontend/src/App.tsx": "Main application component that renders the complete single-page website with navigation and all sections (hero, products, process, benefits, contact, footer).",
+  "frontend/src/components/Navigation.tsx": "Sticky navigation header with logo, desktop menu, mobile hamburger menu, and smooth scroll functionality to all page sections.",
+  "frontend/src/components/HeroSection.tsx": "Hero section featuring the Beat o Beet logo, tagline, description, and CTA button with background image and decorative wave element.",
+  "frontend/src/components/ProductCard.tsx": "Reusable product card component displaying bottle image, variant name, description, and key benefits with hover effects.",
+  "frontend/src/components/ProductsSection.tsx": "Products showcase section displaying a grid of four beetroot juice variants (Pure, Apple, Ginger, Carrot) with 180ml bottle specifications.",
+  "frontend/src/components/ProcessSection.tsx": "Section explaining the three-step cold press process with illustration and detailed benefits of the cold pressing method.",
+  "frontend/src/components/HealthBenefitsSection.tsx": "Health benefits section highlighting circulation, energy, and antioxidants with icons, plus detailed nutritional information grid.",
+  "frontend/src/components/ContactSection.tsx": "Contact form section with name, email, and message fields that submits inquiries to the backend with success/error feedback.",
+  "frontend/src/components/Footer.tsx": "Footer component with brand info, quick links, contact CTA, copyright, and caffeine.ai attribution with UTM tracking.",
+  "frontend/src/hooks/useQueries.ts": "React Query hook for submitting contact form inquiries to the backend with mutation handling and cache invalidation.",
+  "frontend/src/index.css": "Global styles with custom OKLCH color system for kraft paper aesthetic, burgundy accents, forest green, and Caveat script font for brand typography.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom brand colors (burgundy, kraft, cream, forest), Caveat script font family, and design tokens."
+}

@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Food and beverage website for cold pressed beetroot juice with different variants, bottled in 180ml bottles",
+  "architectural_notes": [
+    "Food and beverage industry website",
+    "Product: cold pressed beetroot juice with variants",
+    "180ml bottle format",
+    "Logo from user-provided image"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Beat o Beet brand logo recreation from uploaded image, high resolution circular design with beetroot illustration, '100% NATURAL VITALITY' text, and 'HEALTHY JUICE DRINK' tagline on kraft paper background (beat-o-beet-logo.dim_800x800.png)\n- Pure beetroot juice in 180ml clear glass bottle with Beat o Beet label, professional product photography style on white background (beetroot-pure-bottle.dim_400x600.png)\n- Beetroot-apple juice variant in 180ml bottle with Beat o Beet label and apple accent, product photography on white background (beetroot-apple-bottle.dim_400x600.png)\n- Beetroot-ginger juice variant in 180ml bottle with Beat o Beet label and ginger accent, product photography on white background (beetroot-ginger-bottle.dim_400x600.png)\n- Beetroot-carrot juice variant in 180ml bottle with Beat o Beet label and carrot accent, product photography on white background (beetroot-carrot-bottle.dim_400x600.png)\n- Hero section background image of fresh beetroots with green leaves, earthy natural aesthetic, soft focus (hero-beetroot-background.dim_1920x1080.jpg)\n- Icon illustration of a heart with pulse line representing improved blood circulation benefit (health-icon-circulation.dim_200x200.png)\n- Icon illustration of a lightning bolt representing natural energy boost benefit (health-icon-energy.dim_200x200.png)\n- Icon illustration of antioxidant molecules or shield representing antioxidant content (health-icon-antioxidants.dim_200x200.png)\n- Cold press juice extraction process illustration showing beetroot being pressed, modern minimal style with organic shapes (cold-press-process.dim_600x400.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-hero-section-featuring-the-beat-o-beet-brand-logo-circular-design-with-beetroot-illustration-100-natural-vitality-text-and-healthy-juice-drink-tagline-as-the-centerpiece-display-the-tagline-100-natural-vitality-prominently-and-include-a-compelling-headline-about-cold-pressed-beetroot-juice",
+      "title": "Create a hero section featuring the Beat o Beet brand logo (circular design with beetroot illustration, '100% NATURAL VITALITY' text, and 'HEALTHY JUICE DRINK' tagline) as the centerpiece. Display the tagline '100% Natural Vitality' prominently and include a compelling headline about cold pressed beetroot juice.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-product-showcase-section-displaying-different-beetroot-juice-variants-in-180ml-bottles-each-product-card-should-show-the-bottle-variant-name-key-features-and-benefits-include-at-least-3-4-juice-variants-e-g-pure-beetroot-beetroot-apple-beetroot-ginger-beetroot-carrot",
+      "title": "Create a product showcase section displaying different beetroot juice variants in 180ml bottles. Each product card should show the bottle, variant name, key features, and benefits. Include at least 3-4 juice variants (e.g., Pure Beetroot, Beetroot-Apple, Beetroot-Ginger, Beetroot-Carrot).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-about-our-process-section-explaining-the-cold-pressing-method-health-benefits-of-beetroot-juice-and-what-makes-the-product-100-natural-with-no-additives-or-preservatives",
+      "title": "Create an 'About Our Process' section explaining the cold pressing method, health benefits of beetroot juice, and what makes the product 100% natural with no additives or preservatives.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-health-benefits-section-highlighting-nutritional-advantages-of-beetroot-juice-including-improved-blood-circulation-natural-energy-boost-antioxidants-and-vitamin-content",
+      "title": "Create a 'Health Benefits' section highlighting nutritional advantages of beetroot juice including improved blood circulation, natural energy boost, antioxidants, and vitamin content.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-where-to-buy-or-contact-section-with-a-simple-form-for-wholesale-inquiries-retail-locations-or-order-information",
+      "title": "Create a 'Where to Buy' or contact section with a simple form for wholesale inquiries, retail locations, or order information.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-responsive-navigation-menu-with-links-to-home-products-benefits-about-and-contact-sections-include-the-beat-o-beet-logo-in-the-navigation-header",
+      "title": "Implement a responsive navigation menu with links to Home, Products, Benefits, About, and Contact sections. Include the Beat o Beet logo in the navigation header.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-natural-earthy-and-organic-visual-design-theme-inspired-by-the-beat-o-beet-logo-s-kraft-paper-aesthetic-use-warm-earth-tones-beige-tan-cream-as-backgrounds-deep-burgundy-beetroot-red-for-primary-actions-and-accents-and-forest-green-for-secondary-elements-typography-should-feel-handcrafted-and-approachable-with-a-mix-of-script-handwritten-fonts-for-the-brand-name-and-clean-sans-serif-for-body-text-create-visual-consistency-across-all-sections-with-organic-shapes-natural-textures-and-an-overall-wholesome-healthy-food-brand-feel",
+      "title": "Apply a natural, earthy, and organic visual design theme inspired by the Beat o Beet logo's kraft paper aesthetic. Use warm earth tones (beige, tan, cream) as backgrounds, deep burgundy/beetroot red for primary actions and accents, and forest green for secondary elements. Typography should feel handcrafted and approachable with a mix of script/handwritten fonts for the brand name and clean sans-serif for body text. Create visual consistency across all sections with organic shapes, natural textures, and an overall wholesome, healthy food brand feel.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create website for cold pressed beetroot juice product",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Beat o Beet",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
