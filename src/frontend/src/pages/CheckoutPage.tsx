@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { useCart } from '@/contexts/CartContext';
 import { useSubmitOrder } from '@/hooks/useQueries';
+import { useToast } from '@/hooks/useToast';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { QrCode } from 'lucide-react';
@@ -14,6 +15,7 @@ export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
   const navigate = useNavigate();
   const submitOrder = useSubmitOrder();
+  const { success: showSuccessToast } = useToast();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -78,8 +80,16 @@ export default function CheckoutPage() {
       });
 
       if (result.success && result.orderId) {
+        // Show success toast notification
+        showSuccessToast('Order submitted successfully! 🎉');
+        
+        // Clear cart
         clearCart();
-        navigate({ to: `/order/${result.orderId}` });
+        
+        // Wait briefly to allow user to see the toast before navigating
+        setTimeout(() => {
+          navigate({ to: `/order/${result.orderId}` });
+        }, 1500);
       }
     } catch (error) {
       console.error('Order submission failed:', error);

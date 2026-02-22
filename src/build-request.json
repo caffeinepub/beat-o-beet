@@ -1,38 +1,145 @@
 {
   "kind": "build_request",
-  "title": "Add navigation link to admin dashboard",
-  "projectName": "Beat o Beet",
-  "priority": "high",
+  "title": "Add ability to update product images and pricing",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-31",
-      "text": "Add a visible navigation link or button to access the admin dashboard at /admin/dashboard in the Navigation component (frontend/src/components/Navigation.tsx)",
+      "id": "REQ-33",
+      "text": "Create an AdminProductsPage component in frontend/src/pages/AdminProductsPage.tsx that displays all products in an editable table with columns for product image preview, name, variant, price (in INR), description, benefits, stock status, and action buttons to edit or delete each product",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-final"
+          "msg-6"
         ],
         "quotes": [
-          "I am not able to see the admin panel in the website"
+          "How can I change the pictures of the juice products in the website and also their pricing?"
         ]
       },
       "acceptanceCriteria": [
-        "A link or button labeled 'Admin' or 'Dashboard' is visible in the Navigation component",
-        "Clicking the link navigates to /admin/dashboard route",
-        "The link is accessible from all pages of the website",
-        "The link styling is consistent with other navigation items"
+        "Table displays all products with their current data",
+        "Product images show as thumbnails in the table",
+        "Price is displayed in INR format (converted from cents stored in backend)",
+        "Edit and Delete buttons are present for each product row"
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "text": "Create a ProductEditModal component in frontend/src/components/ProductEditModal.tsx that allows editing product details including uploading a new product image, updating name, variant, price (in INR), description, benefits array, and stock status",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "How can I change the pictures of the juice products in the website and also their pricing?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Modal opens when edit button is clicked on a product",
+        "Form fields are pre-populated with existing product data",
+        "Image upload field allows selecting a new product image file",
+        "Price input accepts INR values and converts to cents for backend storage",
+        "Benefits can be added or removed as list items",
+        "Save button submits changes to backend"
+      ]
+    },
+    {
+      "id": "REQ-35",
+      "text": "Implement backend function updateProduct(productId: Text, name: Text, variant: Text, price: Nat, description: Text, benefits: [Text], imageUrl: Text, inStock: Bool) that updates the product data in the stable storage and returns a success boolean",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "How can I change the pictures of the juice products in the website and also their pricing?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Function locates product by productId in stable storage",
+        "All provided fields are updated for the product",
+        "Updated product data persists across canister upgrades",
+        "Returns true on success, false if product not found"
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "text": "Implement backend function deleteProduct(productId: Text) that removes a product from stable storage and returns a success boolean",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Function removes product from stable storage",
+        "Returns true on successful deletion, false if product not found",
+        "Deleted products no longer appear in getProducts() results"
+      ]
+    },
+    {
+      "id": "REQ-37",
+      "text": "Create React Query hooks in frontend/src/hooks/useQueries.ts for useUpdateProduct (mutation to update product data) and useDeleteProduct (mutation to delete a product), both invalidating the products query on success",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "useUpdateProduct accepts product data and calls backend updateProduct function",
+        "useDeleteProduct accepts productId and calls backend deleteProduct function",
+        "Both hooks invalidate the products query cache on successful mutation",
+        "Product list refreshes automatically after update or delete"
+      ]
+    },
+    {
+      "id": "REQ-38",
+      "text": "Add route for admin products page at /admin/products in App.tsx and add a navigation link to access it from the Navigation component alongside the existing admin dashboard link",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin products page is accessible at /admin/products route",
+        "Navigation component includes link to admin products page",
+        "Link is visible in the same section as the admin dashboard link"
+      ]
+    },
+    {
+      "id": "REQ-39",
+      "text": "Handle product image uploads by accepting image files in the ProductEditModal, converting them to data URLs or uploading to frontend/public/assets/products/ directory, and updating the product's imageUrl field with the new image path",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "How can I change the pictures of the juice products in the website and also their pricing?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Image file input accepts common image formats (PNG, JPG, WEBP)",
+        "Selected image is displayed as preview in the modal",
+        "Image is saved to frontend/public/assets/products/ with a unique filename",
+        "Product's imageUrl is updated to reference the new image path",
+        "New product image displays correctly on ProductCard after save"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the existing route configuration in App.tsx - the /admin/dashboard route already exists",
-    "Do not change the AdminDashboardPage component implementation",
-    "Maintain the existing Navigation component structure and styling"
+    "Maintain the existing single-actor backend architecture in backend/main.mo",
+    "Do not modify the read-only paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui",
+    "Price must be stored in cents (Nat) in the backend but displayed and edited in INR format in the frontend"
   ],
   "nonGoals": [
-    "Adding authentication or access control to the admin dashboard",
-    "Creating new admin features or functionality",
-    "Modifying the admin dashboard layout or data display"
+    "Adding authentication or authorization to the admin pages",
+    "Bulk product import/export functionality",
+    "Product inventory management beyond stock status",
+    "Image editing or cropping capabilities within the modal",
+    "Product categories or filtering"
   ],
   "imageRequirements": {
     "required": [],

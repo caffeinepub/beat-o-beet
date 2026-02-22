@@ -72,6 +72,11 @@ export interface Product {
   'price' : bigint,
   'variant' : string,
 }
+export interface ProductDeleteResponse {
+  'deletedProductId' : [] | [string],
+  'message' : string,
+  'success' : boolean,
+}
 export interface ProductListResponse {
   'success' : boolean,
   'products' : Array<Product>,
@@ -80,11 +85,43 @@ export interface ProductResponse {
   'success' : boolean,
   'product' : [] | [Product],
 }
+export interface ProductUpdateResponse {
+  'message' : string,
+  'success' : boolean,
+  'product' : [] | [Product],
+}
+export interface _CaffeineStorageCreateCertificateResult {
+  'method' : string,
+  'blob_hash' : string,
+}
+export interface _CaffeineStorageRefillInformation {
+  'proposed_top_up_amount' : [] | [bigint],
+}
+export interface _CaffeineStorageRefillResult {
+  'success' : [] | [boolean],
+  'topped_up_amount' : [] | [bigint],
+}
 export interface _SERVICE {
+  '_caffeineStorageBlobIsLive' : ActorMethod<[Uint8Array], boolean>,
+  '_caffeineStorageBlobsToDelete' : ActorMethod<[], Array<Uint8Array>>,
+  '_caffeineStorageConfirmBlobDeletion' : ActorMethod<
+    [Array<Uint8Array>],
+    undefined
+  >,
+  '_caffeineStorageCreateCertificate' : ActorMethod<
+    [string],
+    _CaffeineStorageCreateCertificateResult
+  >,
+  '_caffeineStorageRefillCashier' : ActorMethod<
+    [[] | [_CaffeineStorageRefillInformation]],
+    _CaffeineStorageRefillResult
+  >,
+  '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   'addProduct' : ActorMethod<
     [string, string, string, bigint, string, Array<string>, string, boolean],
     ProductResponse
   >,
+  'deleteProduct' : ActorMethod<[string], ProductDeleteResponse>,
   'getAllContactSubmissions' : ActorMethod<[], ContactSubmissionListResponse>,
   'getOrderById' : ActorMethod<[string], OrderStatusResponse>,
   'getOrdersByStatus' : ActorMethod<[OrderStatus], OrderListResponse>,
@@ -99,6 +136,10 @@ export interface _SERVICE {
     OrderResponse
   >,
   'updateOrderStatus' : ActorMethod<[string, OrderStatus], OrderStatusResponse>,
+  'updateProduct' : ActorMethod<
+    [string, string, string, bigint, string, Array<string>, string, boolean],
+    ProductUpdateResponse
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

@@ -1,11 +1,14 @@
 # Specification
 
 ## Summary
-**Goal:** Add a navigation link to access the admin dashboard from the website navigation.
+**Goal:** Add admin functionality to update product images and pricing.
 
 **Planned changes:**
-- Add an "Admin" or "Dashboard" link to the Navigation component that navigates to /admin/dashboard
-- Ensure the link is visible and accessible from all pages
-- Style the link consistently with other navigation items
+- Create an admin products page that displays all products in an editable table
+- Add a product edit modal for updating product details, images, and pricing
+- Implement backend functions to update and delete products
+- Add image upload capability to change product images
+- Create React Query hooks for product update and delete operations
+- Add navigation route and link to the admin products page
 
-**User-visible outcome:** Users can access the admin dashboard by clicking a visible navigation link in the site header.
+**User-visible outcome:** Admins can view all products in a table, edit product details including uploading new images and changing prices in INR, and delete products from the catalog.

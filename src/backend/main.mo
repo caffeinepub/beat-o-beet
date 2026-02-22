@@ -1,17 +1,17 @@
 import Map "mo:core/Map";
-import List "mo:core/List";
 import Iter "mo:core/Iter";
 import Text "mo:core/Text";
 import Nat "mo:core/Nat";
 import Int "mo:core/Int";
 import Array "mo:core/Array";
-import Runtime "mo:core/Runtime";
 import Time "mo:core/Time";
-import Principal "mo:core/Principal";
+import Migration "migration";
+import MixinStorage "blob-storage/Mixin";
 
-
-
+(with migration = Migration.run)
 actor {
+  include MixinStorage();
+
   public type Product = {
     id : Text;
     name : Text;
@@ -58,6 +58,18 @@ actor {
   public type ProductResponse = {
     success : Bool;
     product : ?Product;
+  };
+
+  public type ProductUpdateResponse = {
+    success : Bool;
+    message : Text;
+    product : ?Product;
+  };
+
+  public type ProductDeleteResponse = {
+    success : Bool;
+    message : Text;
+    deletedProductId : ?Text;
   };
 
   public type OrderStatusResponse = {
@@ -126,6 +138,65 @@ actor {
     {
       success = true;
       product = ?product;
+    };
+  };
+
+  public shared ({ caller }) func updateProduct(
+    id : Text,
+    name : Text,
+    variant : Text,
+    price : Nat,
+    description : Text,
+    benefits : [Text],
+    imageUrl : Text,
+    inStock : Bool,
+  ) : async ProductUpdateResponse {
+    switch (products.get(id)) {
+      case (null) {
+        {
+          success = false;
+          message = "Product with id " # id # " not found";
+          product = null;
+        };
+      };
+      case (?_) {
+        let updatedProduct : Product = {
+          id;
+          name;
+          variant;
+          price;
+          description;
+          benefits;
+          imageUrl;
+          inStock;
+        };
+        products.add(id, updatedProduct);
+        {
+          success = true;
+          message = "Product updated successfully!";
+          product = ?updatedProduct;
+        };
+      };
+    };
+  };
+
+  public shared ({ caller }) func deleteProduct(productId : Text) : async ProductDeleteResponse {
+    switch (products.get(productId)) {
+      case (null) {
+        {
+          success = false;
+          message = "Product with id " # productId # " not found";
+          deletedProductId = null;
+        };
+      };
+      case (?_) {
+        products.remove(productId);
+        {
+          success = true;
+          message = "Product deleted successfully!";
+          deletedProductId = ?productId;
+        };
+      };
     };
   };
 

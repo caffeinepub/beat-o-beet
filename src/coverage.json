@@ -1,34 +1,107 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-21T16:24:57.911Z",
+  "generatedAt": "2026-02-21T16:48:25.935Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 7,
+    "implemented": 5,
     "items": [
       {
-        "id": "REQ-31",
-        "summary": "Add a visible navigation link or button to access the admin dashboard at /admin/dashboard in the Navigation component (frontend/src/components/Navigation.tsx)",
+        "id": "REQ-33",
+        "summary": "Create an AdminProductsPage component in frontend/src/pages/AdminProductsPage.tsx that displays all products in an editable table with columns for product image preview, name, variant, price (in INR), description, benefits, stock status, and action buttons to edit or delete each product",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/pages/AdminProductsPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/AdminProductsPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-34",
+        "summary": "Create a ProductEditModal component in frontend/src/components/ProductEditModal.tsx that allows editing product details including uploading a new product image, updating name, variant, price (in INR), description, benefits array, and stock status",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProductEditModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProductEditModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-35",
+        "summary": "Implement backend function updateProduct(productId: Text, name: Text, variant: Text, price: Nat, description: Text, benefits: [Text], imageUrl: Text, inStock: Bool) that updates the product data in the stable storage and returns a success boolean",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-36",
+        "summary": "Implement backend function deleteProduct(productId: Text) that removes a product from stable storage and returns a success boolean",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-37",
+        "summary": "Create React Query hooks in frontend/src/hooks/useQueries.ts for useUpdateProduct (mutation to update product data) and useDeleteProduct (mutation to delete a product), both invalidating the products query on success",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-38",
+        "summary": "Add route for admin products page at /admin/products in App.tsx and add a navigation link to access it from the Navigation component alongside the existing admin dashboard link",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
           "frontend/src/components/Navigation.tsx"
         ],
         "matchedFiles": [
+          "frontend/src/App.tsx",
           "frontend/src/components/Navigation.tsx"
+        ]
+      },
+      {
+        "id": "REQ-39",
+        "summary": "Handle product image uploads by accepting image files in the ProductEditModal, converting them to data URLs or uploading to frontend/public/assets/products/ directory, and updating the product's imageUrl field with the new image path",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProductEditModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProductEditModal.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/blob-storage/Mixin.mo",
+    "backend/blob-storage/Storage.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
+    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
     "frontend/src/components/Navigation.tsx",
+    "frontend/src/components/ProductEditModal.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AdminProductsPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

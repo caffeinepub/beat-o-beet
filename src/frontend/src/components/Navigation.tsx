@@ -78,12 +78,19 @@ export default function Navigation() {
                 </button>
               ))}
               
-              {/* Admin Link */}
+              {/* Admin Links */}
               <Link
                 to="/admin/dashboard"
                 className="text-brown font-medium hover:text-burgundy transition-colors duration-200 focus:outline-none focus:text-burgundy"
               >
                 Admin
+              </Link>
+              
+              <Link
+                to="/admin/products"
+                className="text-brown font-medium hover:text-burgundy transition-colors duration-200 focus:outline-none focus:text-burgundy"
+              >
+                Admin Products
               </Link>
               
               {/* Cart Button */}
@@ -139,13 +146,21 @@ export default function Navigation() {
                   </button>
                 ))}
                 
-                {/* Admin Link in Mobile Menu */}
+                {/* Admin Links in Mobile Menu */}
                 <Link
                   to="/admin/dashboard"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-brown font-medium hover:text-burgundy transition-colors duration-200 text-left py-2 px-4 rounded-lg hover:bg-cream focus:outline-none focus:bg-cream"
                 >
                   Admin
+                </Link>
+                
+                <Link
+                  to="/admin/products"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-brown font-medium hover:text-burgundy transition-colors duration-200 text-left py-2 px-4 rounded-lg hover:bg-cream focus:outline-none focus:bg-cream"
+                >
+                  Admin Products
                 </Link>
               </div>
             </div>

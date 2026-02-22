@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
-import type { CartItem, OrderResponse, OrderStatusResponse, ContactFormResponse, ContactSubmissionListResponse } from '../backend';
+import type { CartItem, OrderResponse, OrderStatusResponse, ContactFormResponse, ContactSubmissionListResponse, ProductListResponse, ProductUpdateResponse, ProductDeleteResponse } from '../backend';
 
 interface OrderFormData {
   items: CartItem[];
@@ -14,6 +14,17 @@ interface ContactFormData {
   customerEmail: string;
   address: string;
   message?: string;
+}
+
+interface ProductUpdateData {
+  id: string;
+  name: string;
+  variant: string;
+  price: bigint;
+  description: string;
+  benefits: string[];
+  imageUrl: string;
+  inStock: boolean;
 }
 
 export function useSubmitOrder() {
@@ -93,5 +104,63 @@ export function useContactSubmissions() {
       return await actor.getAllContactSubmissions();
     },
     enabled: !!actor && !isFetching,
+  });
+}
+
+export function useProducts() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<ProductListResponse>({
+    queryKey: ['products'],
+    queryFn: async () => {
+      if (!actor) {
+        throw new Error('Actor not initialized');
+      }
+      return await actor.getProducts();
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
+export function useUpdateProduct() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation<ProductUpdateResponse, Error, ProductUpdateData>({
+    mutationFn: async (data: ProductUpdateData) => {
+      if (!actor) {
+        throw new Error('Actor not initialized');
+      }
+      return await actor.updateProduct(
+        data.id,
+        data.name,
+        data.variant,
+        data.price,
+        data.description,
+        data.benefits,
+        data.imageUrl,
+        data.inStock
+      );
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    }
+  });
+}
+
+export function useDeleteProduct() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation<ProductDeleteResponse, Error, string>({
+    mutationFn: async (productId: string) => {
+      if (!actor) {
+        throw new Error('Actor not initialized');
+      }
+      return await actor.deleteProduct(productId);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    }
   });
 }

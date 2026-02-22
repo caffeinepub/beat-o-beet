@@ -8,6 +8,17 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const _CaffeineStorageCreateCertificateResult = IDL.Record({
+  'method' : IDL.Text,
+  'blob_hash' : IDL.Text,
+});
+export const _CaffeineStorageRefillInformation = IDL.Record({
+  'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+});
+export const _CaffeineStorageRefillResult = IDL.Record({
+  'success' : IDL.Opt(IDL.Bool),
+  'topped_up_amount' : IDL.Opt(IDL.Nat),
+});
 export const Product = IDL.Record({
   'id' : IDL.Text,
   'inStock' : IDL.Bool,
@@ -21,6 +32,11 @@ export const Product = IDL.Record({
 export const ProductResponse = IDL.Record({
   'success' : IDL.Bool,
   'product' : IDL.Opt(Product),
+});
+export const ProductDeleteResponse = IDL.Record({
+  'deletedProductId' : IDL.Opt(IDL.Text),
+  'message' : IDL.Text,
+  'success' : IDL.Bool,
 });
 export const ContactSubmission = IDL.Record({
   'id' : IDL.Text,
@@ -80,8 +96,39 @@ export const OrderResponse = IDL.Record({
   'message' : IDL.Text,
   'success' : IDL.Bool,
 });
+export const ProductUpdateResponse = IDL.Record({
+  'message' : IDL.Text,
+  'success' : IDL.Bool,
+  'product' : IDL.Opt(Product),
+});
 
 export const idlService = IDL.Service({
+  '_caffeineStorageBlobIsLive' : IDL.Func(
+      [IDL.Vec(IDL.Nat8)],
+      [IDL.Bool],
+      ['query'],
+    ),
+  '_caffeineStorageBlobsToDelete' : IDL.Func(
+      [],
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      ['query'],
+    ),
+  '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+      [IDL.Vec(IDL.Vec(IDL.Nat8))],
+      [],
+      [],
+    ),
+  '_caffeineStorageCreateCertificate' : IDL.Func(
+      [IDL.Text],
+      [_CaffeineStorageCreateCertificateResult],
+      [],
+    ),
+  '_caffeineStorageRefillCashier' : IDL.Func(
+      [IDL.Opt(_CaffeineStorageRefillInformation)],
+      [_CaffeineStorageRefillResult],
+      [],
+    ),
+  '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
   'addProduct' : IDL.Func(
       [
         IDL.Text,
@@ -96,6 +143,7 @@ export const idlService = IDL.Service({
       [ProductResponse],
       [],
     ),
+  'deleteProduct' : IDL.Func([IDL.Text], [ProductDeleteResponse], []),
   'getAllContactSubmissions' : IDL.Func(
       [],
       [ContactSubmissionListResponse],
@@ -120,11 +168,36 @@ export const idlService = IDL.Service({
       [OrderStatusResponse],
       [],
     ),
+  'updateProduct' : IDL.Func(
+      [
+        IDL.Text,
+        IDL.Text,
+        IDL.Text,
+        IDL.Nat,
+        IDL.Text,
+        IDL.Vec(IDL.Text),
+        IDL.Text,
+        IDL.Bool,
+      ],
+      [ProductUpdateResponse],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const _CaffeineStorageCreateCertificateResult = IDL.Record({
+    'method' : IDL.Text,
+    'blob_hash' : IDL.Text,
+  });
+  const _CaffeineStorageRefillInformation = IDL.Record({
+    'proposed_top_up_amount' : IDL.Opt(IDL.Nat),
+  });
+  const _CaffeineStorageRefillResult = IDL.Record({
+    'success' : IDL.Opt(IDL.Bool),
+    'topped_up_amount' : IDL.Opt(IDL.Nat),
+  });
   const Product = IDL.Record({
     'id' : IDL.Text,
     'inStock' : IDL.Bool,
@@ -138,6 +211,11 @@ export const idlFactory = ({ IDL }) => {
   const ProductResponse = IDL.Record({
     'success' : IDL.Bool,
     'product' : IDL.Opt(Product),
+  });
+  const ProductDeleteResponse = IDL.Record({
+    'deletedProductId' : IDL.Opt(IDL.Text),
+    'message' : IDL.Text,
+    'success' : IDL.Bool,
   });
   const ContactSubmission = IDL.Record({
     'id' : IDL.Text,
@@ -197,8 +275,39 @@ export const idlFactory = ({ IDL }) => {
     'message' : IDL.Text,
     'success' : IDL.Bool,
   });
+  const ProductUpdateResponse = IDL.Record({
+    'message' : IDL.Text,
+    'success' : IDL.Bool,
+    'product' : IDL.Opt(Product),
+  });
   
   return IDL.Service({
+    '_caffeineStorageBlobIsLive' : IDL.Func(
+        [IDL.Vec(IDL.Nat8)],
+        [IDL.Bool],
+        ['query'],
+      ),
+    '_caffeineStorageBlobsToDelete' : IDL.Func(
+        [],
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        ['query'],
+      ),
+    '_caffeineStorageConfirmBlobDeletion' : IDL.Func(
+        [IDL.Vec(IDL.Vec(IDL.Nat8))],
+        [],
+        [],
+      ),
+    '_caffeineStorageCreateCertificate' : IDL.Func(
+        [IDL.Text],
+        [_CaffeineStorageCreateCertificateResult],
+        [],
+      ),
+    '_caffeineStorageRefillCashier' : IDL.Func(
+        [IDL.Opt(_CaffeineStorageRefillInformation)],
+        [_CaffeineStorageRefillResult],
+        [],
+      ),
+    '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
     'addProduct' : IDL.Func(
         [
           IDL.Text,
@@ -213,6 +322,7 @@ export const idlFactory = ({ IDL }) => {
         [ProductResponse],
         [],
       ),
+    'deleteProduct' : IDL.Func([IDL.Text], [ProductDeleteResponse], []),
     'getAllContactSubmissions' : IDL.Func(
         [],
         [ContactSubmissionListResponse],
@@ -239,6 +349,20 @@ export const idlFactory = ({ IDL }) => {
     'updateOrderStatus' : IDL.Func(
         [IDL.Text, OrderStatus],
         [OrderStatusResponse],
+        [],
+      ),
+    'updateProduct' : IDL.Func(
+        [
+          IDL.Text,
+          IDL.Text,
+          IDL.Text,
+          IDL.Nat,
+          IDL.Text,
+          IDL.Vec(IDL.Text),
+          IDL.Text,
+          IDL.Bool,
+        ],
+        [ProductUpdateResponse],
         [],
       ),
   });

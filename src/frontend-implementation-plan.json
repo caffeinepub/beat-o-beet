@@ -1,22 +1,97 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add navigation link to admin dashboard",
+  "title": "Add ability to update product images and pricing",
   "requirements": [
     {
-      "id": "REQ-31",
-      "summary": "Add a visible navigation link to access the admin dashboard in the Navigation component",
+      "id": "REQ-33",
+      "summary": "Create AdminProductsPage component displaying all products in an editable table with image previews, product details, and action buttons",
       "acceptanceCriteria": [
-        "A link or button labeled 'Admin' or 'Dashboard' is visible in the Navigation component",
-        "Clicking the link navigates to /admin/dashboard route",
-        "The link is accessible from all pages of the website",
-        "The link styling is consistent with other navigation items"
+        "Table displays all products with their current data",
+        "Product images show as thumbnails in the table",
+        "Price is displayed in INR format (converted from cents stored in backend)",
+        "Edit and Delete buttons are present for each product row"
       ],
       "file_operations": [
         {
+          "path": "frontend/src/pages/AdminProductsPage.tsx",
+          "operation": "create",
+          "description": "Create AdminProductsPage component that fetches products using React Query, displays them in a table with columns for image thumbnail, name, variant, price (converted from cents to INR for display), description, benefits, stock status, and action buttons for edit and delete. Include loading and error states. Use shadcn/ui Table components for consistent styling with the existing AdminDashboardPage."
+        }
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "summary": "Create ProductEditModal component for editing product details including image upload, name, variant, price, description, benefits, and stock status",
+      "acceptanceCriteria": [
+        "Modal opens when edit button is clicked on a product",
+        "Form fields are pre-populated with existing product data",
+        "Image upload field allows selecting a new product image file",
+        "Price input accepts INR values and converts to cents for backend storage",
+        "Benefits can be added or removed as list items",
+        "Save button submits changes to backend"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductEditModal.tsx",
+          "operation": "create",
+          "description": "Create ProductEditModal component using shadcn/ui Dialog, Form, Input, Textarea, and Button components. Include controlled form fields for name, variant, price (in INR, converting to/from cents), description, a dynamic benefits list with add/remove buttons, stock status toggle, and file input for image upload. Pre-populate form with product data passed as prop. On save, call useUpdateProduct hook with converted price (INR to cents). Display image preview when file is selected. Use the blob-storage component to handle image uploads by converting the selected file to ExternalBlob using ExternalBlob.fromBytes() and track upload progress with withUploadProgress(). Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-37",
+      "summary": "Create React Query hooks for updating and deleting products, both invalidating the products query on success",
+      "acceptanceCriteria": [
+        "useUpdateProduct accepts product data and calls backend updateProduct function",
+        "useDeleteProduct accepts productId and calls backend deleteProduct function",
+        "Both hooks invalidate the products query cache on successful mutation",
+        "Product list refreshes automatically after update or delete"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add useUpdateProduct mutation hook that accepts product data (id, name, variant, price in cents as bigint, description, benefits array, imageUrl, inStock boolean) and calls actor.updateProduct(). Add useDeleteProduct mutation hook that accepts productId and calls actor.deleteProduct(). Both hooks should use useMutation from React Query and invalidate the 'products' query key in their onSuccess callbacks to trigger automatic refetch. Follow the existing pattern used for useSubmitOrder and useSubmitContactForm hooks in this file."
+        }
+      ]
+    },
+    {
+      "id": "REQ-38",
+      "summary": "Add route for admin products page and navigation link to access it from the Navigation component",
+      "acceptanceCriteria": [
+        "Admin products page is accessible at /admin/products route",
+        "Navigation component includes link to admin products page",
+        "Link is visible in the same section as the admin dashboard link"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Import AdminProductsPage component and add a new Route for path '/admin/products' that renders <AdminProductsPage />. Place this route alongside the existing '/admin' route in the Routes configuration."
+        },
+        {
           "path": "frontend/src/components/Navigation.tsx",
           "operation": "modify",
-          "description": "Add an 'Admin' navigation link that routes to /admin/dashboard. Place it in the desktop navigation menu alongside existing nav items and in the mobile menu. Use consistent styling with other navigation links. Ensure the link uses React Router's Link component for proper routing."
+          "description": "Add a navigation link to '/admin/products' with text 'Admin Products' positioned next to the existing 'Admin' link in both desktop and mobile navigation menus. Use the same styling pattern as the existing admin dashboard link."
+        }
+      ]
+    },
+    {
+      "id": "REQ-39",
+      "summary": "Handle product image uploads by accepting image files, saving them to frontend/public/assets/products/, and updating the product's imageUrl field",
+      "acceptanceCriteria": [
+        "Image file input accepts common image formats (PNG, JPG, WEBP)",
+        "Selected image is displayed as preview in the modal",
+        "Image is saved to frontend/public/assets/products/ with a unique filename",
+        "Product's imageUrl is updated to reference the new image path",
+        "New product image displays correctly on ProductCard after save"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductEditModal.tsx",
+          "operation": "modify",
+          "description": "Implement image upload handling within the ProductEditModal component. Add file input that accepts 'image/png,image/jpeg,image/webp' file types. When a file is selected, convert it to ExternalBlob using ExternalBlob.fromBytes() from the blob-storage component and display a preview using the blob's direct URL via getDirectURL(). Track upload progress using withUploadProgress() to show upload percentage. Generate a unique filename using timestamp and original filename, and store the uploaded image reference. Update the imageUrl form field with the new image path for submission to the backend. Use the blob-storage component to support image uploads. Verify the component's usage instructions before implementing."
         }
       ]
     }

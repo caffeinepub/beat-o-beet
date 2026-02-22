@@ -7,23 +7,13 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export interface Product {
-    id: string;
-    inStock: boolean;
-    name: string;
-    description: string;
-    imageUrl: string;
-    benefits: Array<string>;
-    price: bigint;
-    variant: string;
+export interface ContactSubmissionListResponse {
+    submissions: Array<ContactSubmission>;
+    success: boolean;
 }
 export interface ProductListResponse {
     success: boolean;
     products: Array<Product>;
-}
-export interface ContactSubmissionListResponse {
-    submissions: Array<ContactSubmission>;
-    success: boolean;
 }
 export interface ContactFormResponse {
     message: string;
@@ -31,6 +21,11 @@ export interface ContactFormResponse {
     submissionId?: string;
 }
 export interface ProductResponse {
+    success: boolean;
+    product?: Product;
+}
+export interface ProductUpdateResponse {
+    message: string;
     success: boolean;
     product?: Product;
 }
@@ -42,15 +37,10 @@ export interface ContactSubmission {
     address: string;
     customerEmail: string;
 }
-export interface OrderResponse {
-    orderId?: string;
+export interface ProductDeleteResponse {
+    deletedProductId?: string;
     message: string;
     success: boolean;
-}
-export interface CartItem {
-    productId: string;
-    addedAt: bigint;
-    quantity: bigint;
 }
 export interface Order {
     id: string;
@@ -67,6 +57,26 @@ export interface OrderListResponse {
     orders: Array<Order>;
     success: boolean;
 }
+export interface OrderResponse {
+    orderId?: string;
+    message: string;
+    success: boolean;
+}
+export interface CartItem {
+    productId: string;
+    addedAt: bigint;
+    quantity: bigint;
+}
+export interface Product {
+    id: string;
+    inStock: boolean;
+    name: string;
+    description: string;
+    imageUrl: string;
+    benefits: Array<string>;
+    price: bigint;
+    variant: string;
+}
 export interface OrderStatusResponse {
     order?: Order;
     message: string;
@@ -81,6 +91,7 @@ export enum OrderStatus {
 }
 export interface backendInterface {
     addProduct(id: string, name: string, variant: string, price: bigint, description: string, benefits: Array<string>, imageUrl: string, inStock: boolean): Promise<ProductResponse>;
+    deleteProduct(productId: string): Promise<ProductDeleteResponse>;
     getAllContactSubmissions(): Promise<ContactSubmissionListResponse>;
     getOrderById(orderId: string): Promise<OrderStatusResponse>;
     getOrdersByStatus(status: OrderStatus): Promise<OrderListResponse>;
@@ -89,4 +100,5 @@ export interface backendInterface {
     submitContactForm(customerName: string, customerEmail: string, address: string, message: string | null): Promise<ContactFormResponse>;
     submitOrder(items: Array<CartItem>, customerName: string, customerEmail: string, shippingAddress: string): Promise<OrderResponse>;
     updateOrderStatus(orderId: string, newStatus: OrderStatus): Promise<OrderStatusResponse>;
+    updateProduct(id: string, name: string, variant: string, price: bigint, description: string, benefits: Array<string>, imageUrl: string, inStock: boolean): Promise<ProductUpdateResponse>;
 }

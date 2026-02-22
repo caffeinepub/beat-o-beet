@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 9,
+  "projectStateVersion": 13,
   "summary": "Food and beverage website for cold pressed beetroot juice with different variants, bottled in 180ml bottles",
   "architectural_notes": [
     "Food and beverage industry website",
@@ -12,10 +12,8 @@
     "Business name: Mysore Food Labs",
     "Admin dashboard for viewing contact submissions"
   ],
-  "known_issues": [
-    "Admin dashboard not accessible/visible on deployed website"
-  ],
-  "isFixRequest": true,
+  "known_issues": [],
+  "isFixRequest": false,
   "existing_features": [
     {
       "id": "feature-create-a-hero-section-featuring-the-beat-o-beet-brand-logo-circular-design-with-beetroot-illustration-100-natural-vitality-text-and-healthy-juice-drink-tagline-as-the-centerpiece-display-the-tagline-100-natural-vitality-prominently-and-include-a-compelling-headline-about-cold-pressed-beetroot-juice",
@@ -192,6 +190,54 @@
         "REQ-31"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-display-an-acknowledgement-message-or-modal-immediately-after-the-customer-clicks-the-place-order-button-on-the-checkoutpage-confirming-that-the-order-has-been-submitted-successfully-before-navigating-to-the-order-confirmation-page",
+      "title": "Display an acknowledgement message or modal immediately after the customer clicks the 'Place Order' button on the CheckoutPage, confirming that the order has been submitted successfully before navigating to the order confirmation page",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-adminproductspage-component-in-frontend-src-pages-adminproductspage-tsx-that-displays-all-products-in-an-editable-table-with-columns-for-product-image-preview-name-variant-price-in-inr-description-benefits-stock-status-and-action-buttons-to-edit-or-delete-each-product",
+      "title": "Create an AdminProductsPage component in frontend/src/pages/AdminProductsPage.tsx that displays all products in an editable table with columns for product image preview, name, variant, price (in INR), description, benefits, stock status, and action buttons to edit or delete each product",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-producteditmodal-component-in-frontend-src-components-producteditmodal-tsx-that-allows-editing-product-details-including-uploading-a-new-product-image-updating-name-variant-price-in-inr-description-benefits-array-and-stock-status",
+      "title": "Create a ProductEditModal component in frontend/src/components/ProductEditModal.tsx that allows editing product details including uploading a new product image, updating name, variant, price (in INR), description, benefits array, and stock status",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-react-query-hooks-in-frontend-src-hooks-usequeries-ts-for-useupdateproduct-mutation-to-update-product-data-and-usedeleteproduct-mutation-to-delete-a-product-both-invalidating-the-products-query-on-success",
+      "title": "Create React Query hooks in frontend/src/hooks/useQueries.ts for useUpdateProduct (mutation to update product data) and useDeleteProduct (mutation to delete a product), both invalidating the products query on success",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-route-for-admin-products-page-at-admin-products-in-app-tsx-and-add-a-navigation-link-to-access-it-from-the-navigation-component-alongside-the-existing-admin-dashboard-link",
+      "title": "Add route for admin products page at /admin/products in App.tsx and add a navigation link to access it from the Navigation component alongside the existing admin dashboard link",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-handle-product-image-uploads-by-accepting-image-files-in-the-producteditmodal-converting-them-to-data-urls-or-uploading-to-frontend-public-assets-products-directory-and-updating-the-product-s-imageurl-field-with-the-new-image-path",
+      "title": "Handle product image uploads by accepting image files in the ProductEditModal, converting them to data URLs or uploading to frontend/public/assets/products/ directory, and updating the product's imageUrl field with the new image path",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -300,6 +346,34 @@
       "summary": "Implement backend function getAllContactSubmissions() that returns an array of all stored contact form submissions sorted by submission date (newest first)",
       "reqIds": [
         "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Add order acknowledgement confirmation after customer clicks 'Place Order' button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Add ability to update product images and pricing on the website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Implement backend function updateProduct(productId: Text, name: Text, variant: Text, price: Nat, description: Text, benefits: [Text], imageUrl: Text, inStock: Bool) that updates the product data in the stable storage and returns a success boolean",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Implement backend function deleteProduct(productId: Text) that removes a product from stable storage and returns a success boolean",
+      "reqIds": [
+        "REQ-36"
       ],
       "status": "pending"
     }

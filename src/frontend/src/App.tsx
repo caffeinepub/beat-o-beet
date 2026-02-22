@@ -1,6 +1,7 @@
 import { RouterProvider, createRouter, createRootRoute, createRoute } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { CartProvider } from './contexts/CartContext';
+import { Toaster } from '@/components/ui/sonner';
 import Navigation from './components/Navigation';
 import HeroSection from './components/HeroSection';
 import ProductsSection from './components/ProductsSection';
@@ -11,6 +12,7 @@ import Footer from './components/Footer';
 import CheckoutPage from './pages/CheckoutPage';
 import OrderConfirmationPage from './pages/OrderConfirmationPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
+import AdminProductsPage from './pages/AdminProductsPage';
 
 const queryClient = new QueryClient();
 
@@ -66,7 +68,13 @@ const adminDashboardRoute = createRoute({
   component: AdminDashboardPage,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute, checkoutRoute, orderRoute, adminDashboardRoute]);
+const adminProductsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/products',
+  component: AdminProductsPage,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, checkoutRoute, orderRoute, adminDashboardRoute, adminProductsRoute]);
 
 const router = createRouter({ routeTree });
 
@@ -81,6 +89,18 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         <RouterProvider router={router} />
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: 'oklch(0.92 0.02 60)',
+              color: 'oklch(0.35 0.05 30)',
+              border: '2px solid oklch(0.45 0.15 15)',
+              borderRadius: '1rem',
+              fontFamily: 'inherit',
+            },
+          }}
+        />
       </CartProvider>
     </QueryClientProvider>
   );
